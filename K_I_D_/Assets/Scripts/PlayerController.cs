@@ -7,8 +7,8 @@ public class PlayerController : MonoBehaviour {
 	//maximale Fortbewegungsgeschwindigkeit
 	public float maxSpeed = 2;
 
-	// Zugriff auf Animatorkontroller
-	private Animator anim;
+    // Zugriff auf Animatorkontroller
+    private Animator anim;
 
 	// Zugriff auf RigidBody2D
 	//private Rigidbody2D rb2d;
@@ -43,9 +43,9 @@ public class PlayerController : MonoBehaviour {
 	// Wird in einem festen Intervall aufgerufen
 	// Hier werden die Animationen an den Animator übergeben
 	void FixedUpdate() {
-
-		// Abfrage ob sich der Player nach links, rechts bewegt und den Wert abfangen und in hor speichern
-		float hor = Input.GetAxis ("Horizontal");
+        
+        // Abfrage ob sich der Player nach links, rechts bewegt und den Wert abfangen und in hor speichern
+        float hor = Input.GetAxis ("Horizontal");
 
 		anim.SetFloat ("speed", Mathf.Abs (hor));
 
@@ -83,53 +83,63 @@ public class PlayerController : MonoBehaviour {
 
         float x = moveJoystick.inputDirection.x;
         float y = moveJoystick.inputDirection.y;
-        Vector2 vector1 = new Vector2(0, 0);
-        Vector2 vector2 = new Vector2(x, y);
+        double angleBetween=361;
+
+        if (moveJoystick.inputDirection != Vector3.zero) { 
+
+            Vector2 v2 = new Vector2(x, y);
         
-        double angleBetween = Vector2.Angle(vector1, vector2);
+         angleBetween = Mathf.Atan2(v2.y, v2.x) * Mathf.Rad2Deg;
+        if (angleBetween < 0) angleBetween = 360 + angleBetween;
+        angleBetween = 360 - angleBetween;
+
+        }
         
 
         // Abfrage für Pfeil nach oben
-        if (Input.GetKey (KeyCode.UpArrow) || (angleBetween>89)) {
+        if (Input.GetKey (KeyCode.UpArrow) || (angleBetween >= 240 && angleBetween < 300)) {
 
 			movesUp = true;
 
 		} else {
 
-			movesUp = false;
-		}
+			movesUp = false; 
+
+        }
 
 
 
 		// Abfrage für Pfeil nach unten
-		if (Input.GetKey (KeyCode.DownArrow) || (y < -0.5 && x < 0.5 && x > -0.5)) {
+		if (Input.GetKey (KeyCode.DownArrow) || (angleBetween >= 60 && angleBetween < 120)) { //(y < -0.5 && x < 0.5 && x > -0.5)
 
 			movesDown = true;
 
-		} else {
+        } else {
 
 			movesDown = false;
 		}
 
 		// Abfrage für Pfeil nach links
-		if (Input.GetKey (KeyCode.LeftArrow) || (x < -0.5 && y < 0.5 && y > -0.5)) {
+		if (Input.GetKey (KeyCode.LeftArrow) || (angleBetween >= 150 && angleBetween < 210)) {    //(x < -0.5 && y < 0.5 && y > -0.5)
 
 			movesLeft = true;
 
-		} else {
+        } else {
 
 			movesLeft = false;
 		}
 
 		// Abfrage für Pfeil nach rechts
-		if (Input.GetKey (KeyCode.RightArrow) || (x > 0.5 && y < 0.5 && y > -0.5)) {
-
-			movesRight = true;
+		if (Input.GetKey (KeyCode.RightArrow) || (angleBetween >= 330 && angleBetween!=361 || angleBetween < 30)) {
+           
+            movesRight = true;
 
 		} else {
 
 			movesRight = false;
 		}
+
+       
 	}
 
 	// Hier werden die Animationen abgespielt
