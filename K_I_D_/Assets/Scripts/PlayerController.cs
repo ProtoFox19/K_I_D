@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour {
 	private Animator anim;
 
 	// Zugriff auf RigidBody2D
-	private Rigidbody2D rb2d;
+	//private Rigidbody2D rb2d;
 
 	// Blickrichtungen
 	private bool movesUp = false;
@@ -19,12 +19,15 @@ public class PlayerController : MonoBehaviour {
 	private bool movesLeft = false;
 	private bool movesRight = false;
 
-	// Use this for initialization
-	void Start () {
+    //Um die Joystick eingaben in das Script zu bekommen.
+    public virtualJoystick moveJoystick;
+
+    // Use this for initialization
+    void Start () {
 
 		// Zugriff auf Animator beim Start initialisieren
 		anim = GetComponent<Animator>();
-		rb2d = GetComponent<Rigidbody2D>();
+	//	rb2d = GetComponent<Rigidbody2D>();
 	}
 	
 	// Update is called once per frame
@@ -49,18 +52,45 @@ public class PlayerController : MonoBehaviour {
 		// Abfrage ob sich der Player nach oben, unten bewegt und den Wert abfangen und in ver speichern
 		float ver = Input.GetAxis ("Vertical");
 
-		// Zuweisung an das RigidBody um den Player in die entsprechende Richtung zu bewegen
-		rb2d.velocity = new Vector2 (hor * maxSpeed, ver * maxSpeed);
+		/* Zuweisung an das RigidBody um den Player in die entsprechende Richtung zu bewegen
+        Hab ich erstmal rausgenommen da er den Joystick keinen rickbody übergeben kann ... deswegen nicht wundern, an sich brauchen wir auch kein Rickbody soweit ich
+        das bis jetzt beurteilen kann, da wir eh keine Schwerkraft auf unserem Caracter setzen ... aber zunot geht das alles wieder schnell rückgängig zu machen*/
+		//rb2d.velocity = new Vector3 (hor * maxSpeed, ver * maxSpeed);
+        
+        Animate ();
 
-		Animate ();
-			
-	}
+
+
+        Vector3 position = transform.position;
+
+        if (Input.GetKey(KeyCode.UpArrow)) position.y += 2.5f * Time.deltaTime;
+        if (Input.GetKey(KeyCode.DownArrow)) position.y -= 2.5f * Time.deltaTime;
+        if (Input.GetKey(KeyCode.LeftArrow)) position.x -= 2.5f * Time.deltaTime;
+        if (Input.GetKey(KeyCode.RightArrow)) position.x += 2.5f * Time.deltaTime;
+
+        if (moveJoystick.inputDirection != Vector3.zero)
+        {
+            position += moveJoystick.inputDirection * 0.1f;
+
+        }
+
+        transform.position = position;
+
+    }
 
 	// Hier werden die Eingaben abgefragt und die entsprechenden bools werden gesetzt
 	public void InputCheck () {
 
-		// Abfrage für Pfeil nach oben
-		if (Input.GetKey (KeyCode.UpArrow)) {
+        float x = moveJoystick.inputDirection.x;
+        float y = moveJoystick.inputDirection.y;
+        Vector2 vector1 = new Vector2(0, 0);
+        Vector2 vector2 = new Vector2(x, y);
+        
+        double angleBetween = Vector2.Angle(vector1, vector2);
+        
+
+        // Abfrage für Pfeil nach oben
+        if (Input.GetKey (KeyCode.UpArrow) || (angleBetween>89)) {
 
 			movesUp = true;
 
@@ -69,8 +99,10 @@ public class PlayerController : MonoBehaviour {
 			movesUp = false;
 		}
 
+
+
 		// Abfrage für Pfeil nach unten
-		if (Input.GetKey (KeyCode.DownArrow)) {
+		if (Input.GetKey (KeyCode.DownArrow) || (y < -0.5 && x < 0.5 && x > -0.5)) {
 
 			movesDown = true;
 
@@ -80,7 +112,7 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		// Abfrage für Pfeil nach links
-		if (Input.GetKey (KeyCode.LeftArrow)) {
+		if (Input.GetKey (KeyCode.LeftArrow) || (x < -0.5 && y < 0.5 && y > -0.5)) {
 
 			movesLeft = true;
 
@@ -90,7 +122,7 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		// Abfrage für Pfeil nach rechts
-		if (Input.GetKey (KeyCode.RightArrow)) {
+		if (Input.GetKey (KeyCode.RightArrow) || (x > 0.5 && y < 0.5 && y > -0.5)) {
 
 			movesRight = true;
 
