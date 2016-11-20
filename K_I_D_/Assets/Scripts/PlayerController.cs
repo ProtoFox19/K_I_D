@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour {
 
         if (moveJoystick.inputDirection != Vector3.zero)
         {
-            position += moveJoystick.inputDirection * 0.1f;
+            position += moveJoystick.inputDirection * 0.2f;
 
         }
 
