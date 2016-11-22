@@ -13,11 +13,17 @@ public class PlayerController : MonoBehaviour {
 	// Zugriff auf RigidBody2D
 	//private Rigidbody2D rb2d;
 
-	// Blickrichtungen
+	// Blickrichtungen GERADE
 	private bool movesUp = false;
 	private bool movesDown = false;
 	private bool movesLeft = false;
 	private bool movesRight = false;
+
+	// Blickrichtungen SCHRAEG
+	private bool movesUpRight = false;
+	private bool movesUpLeft = false;
+	private bool movesDownRight = false;
+	private bool movesDownLeft = false;
 
     //Um die Joystick eingaben in das Script zu bekommen.
     public virtualJoystick moveJoystick;
@@ -57,9 +63,8 @@ public class PlayerController : MonoBehaviour {
         das bis jetzt beurteilen kann, da wir eh keine Schwerkraft auf unserem Caracter setzen ... aber zunot geht das alles wieder schnell rückgängig zu machen*/
 		//rb2d.velocity = new Vector3 (hor * maxSpeed, ver * maxSpeed);
         
+		// Aufruf der Animation Methode
         Animate ();
-
-
 
         Vector3 position = transform.position;
 
@@ -75,7 +80,6 @@ public class PlayerController : MonoBehaviour {
         }
 
         transform.position = position;
-
     }
 
 	// Hier werden die Eingaben abgefragt und die entsprechenden bools werden gesetzt
@@ -94,9 +98,8 @@ public class PlayerController : MonoBehaviour {
         angleBetween = 360 - angleBetween;
 
         }
-        
 
-        // Abfrage für Pfeil nach oben
+		        // Abfrage für Pfeil nach oben
         if (Input.GetKey (KeyCode.UpArrow) || (angleBetween >= 240 && angleBetween < 300)) {
 
 			movesUp = true;
@@ -104,11 +107,8 @@ public class PlayerController : MonoBehaviour {
 		} else {
 
 			movesUp = false; 
-
         }
-
-
-
+			
 		// Abfrage für Pfeil nach unten
 		if (Input.GetKey (KeyCode.DownArrow) || (angleBetween >= 60 && angleBetween < 120)) { //(y < -0.5 && x < 0.5 && x > -0.5)
 
@@ -139,6 +139,47 @@ public class PlayerController : MonoBehaviour {
 			movesRight = false;
 		}
 
+
+
+		// Abfrage für Pfeil nach rechts oben
+		if ((Input.GetKey (KeyCode.RightArrow) && Input.GetKey (KeyCode.UpArrow))  || (angleBetween >= 300 && angleBetween < 330)) {
+
+			movesUpRight = true;
+
+		} else {
+
+			movesUpRight = false;
+		}
+			
+		// Abfrage für Pfeil nach rechts unten
+		if ((Input.GetKey (KeyCode.RightArrow) && Input.GetKey (KeyCode.DownArrow))  || (angleBetween >= 30 || angleBetween < 60)) {
+
+			movesDownRight = true;
+
+		} else {
+
+			movesDownRight = false;
+		}
+
+		// Abfrage für Pfeil nach links oben
+		if ((Input.GetKey (KeyCode.LeftArrow) && Input.GetKey (KeyCode.UpArrow))  || (angleBetween >= 210 || angleBetween < 240)) {
+
+			movesUpLeft = true;
+
+		} else {
+
+			movesUpLeft = false;
+		}
+
+		// Abfrage für Pfeil nach links unten
+		if ((Input.GetKey (KeyCode.LeftArrow) && Input.GetKey (KeyCode.DownArrow))  || (angleBetween >= 120 || angleBetween < 150)) {
+
+			movesDownLeft = true;
+
+		} else {
+
+			movesDownLeft = false;
+		}
        
 	}
 
@@ -184,6 +225,60 @@ public class PlayerController : MonoBehaviour {
 
 			anim.SetBool ("movesRight", false);
 		}
+
+
+
+
+
+		// Animation nach rechts oben
+		if (movesUpRight) {
+
+			anim.SetBool ("movesRight", movesRight);
+			anim.SetBool ("movesUp", movesUp);
+
+		} else {
+
+			anim.SetBool ("movesRight", false);
+			anim.SetBool ("movesUp", false);
+		}
+
+		// Animation nach rechts unten
+		if (movesDownRight) {
+
+			anim.SetBool ("movesRight", movesRight);
+			anim.SetBool ("movesDown", movesDown);
+
+		} else {
+
+			anim.SetBool ("movesRight", false);
+			anim.SetBool ("movesDown", false);
+		}
+
+		// Animation nach links unten
+		if (movesDownLeft) {
+
+			anim.SetBool ("movesLeft", movesLeft);
+			anim.SetBool ("movesDown", movesDown);
+
+		} else {
+
+			anim.SetBool ("movesLeft", false);
+			anim.SetBool ("movesDown", false);
+		}
+
+		// Animation nach links oben
+		if (movesUpLeft) {
+
+			anim.SetBool ("movesLeft", movesLeft);
+			anim.SetBool ("movesUp", movesUp);
+
+		} else {
+
+			anim.SetBool ("movesLeft", false);
+			anim.SetBool ("movesUp", false);
+		}
+
+
 	}
 
 }
