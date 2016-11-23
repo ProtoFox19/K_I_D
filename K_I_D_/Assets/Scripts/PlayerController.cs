@@ -90,29 +90,26 @@ public class PlayerController : MonoBehaviour {
         double angleBetween=361;
 
         if (moveJoystick.inputDirection != Vector3.zero) { 
-
             Vector2 v2 = new Vector2(x, y);
-        
-         angleBetween = Mathf.Atan2(v2.y, v2.x) * Mathf.Rad2Deg;
-        if (angleBetween < 0) angleBetween = 360 + angleBetween;
-        angleBetween = 360 - angleBetween;
-
+            angleBetween = Mathf.Atan2(v2.y, v2.x) * Mathf.Rad2Deg;
+            if (angleBetween < 0) angleBetween = 360 + angleBetween;
+            //angleBetween = 360 - angleBetween;
         }
 
 		        // Abfrage für Pfeil nach oben
-        if (Input.GetKey (KeyCode.UpArrow) || (angleBetween >= 240 && angleBetween < 300)) {
+        if (Input.GetKey (KeyCode.UpArrow) || (angleBetween >= 67.5 && angleBetween < 112.5)) {     //(angleBetween >= 240 && angleBetween < 300)
 
-			movesUp = true;
+            movesUp = true;
 
-		} else {
+        } else {
 
 			movesUp = false; 
         }
 			
 		// Abfrage für Pfeil nach unten
-		if (Input.GetKey (KeyCode.DownArrow) || (angleBetween >= 60 && angleBetween < 120)) { //(y < -0.5 && x < 0.5 && x > -0.5)
-
-			movesDown = true;
+		if (Input.GetKey (KeyCode.DownArrow) || (angleBetween >= 247.5 && angleBetween < 292.5)) { //(angleBetween >= 60 && angleBetween < 120)
+        
+            movesDown = true;
 
         } else {
 
@@ -120,9 +117,10 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		// Abfrage für Pfeil nach links
-		if (Input.GetKey (KeyCode.LeftArrow) || (angleBetween >= 150 && angleBetween < 210)) {    //(x < -0.5 && y < 0.5 && y > -0.5)
+		if (Input.GetKey (KeyCode.LeftArrow) || (angleBetween >= 157.5 && angleBetween < 202.5)) {    
 
 			movesLeft = true;
+
 
         } else {
 
@@ -130,68 +128,69 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		// Abfrage für Pfeil nach rechts
-		if (Input.GetKey (KeyCode.RightArrow) || (angleBetween >= 330 && angleBetween!=361 || angleBetween < 30)) {
-           
+		if (Input.GetKey (KeyCode.RightArrow) || ((angleBetween >= 337.5 && angleBetween <= 360 ) || (angleBetween < 22.5 && angleBetween > 0))) {      //&& angleBetween!=361
+        
             movesRight = true;
 
-		} else {
+
+        } else {
 
 			movesRight = false;
 		}
 
 
 
-		// Abfrage für Pfeil nach rechts oben
-		if ((Input.GetKey (KeyCode.RightArrow) && Input.GetKey (KeyCode.UpArrow))  || (angleBetween >= 300 && angleBetween < 330)) {
+        // Abfrage für Pfeil nach rechts oben
+       	if ((Input.GetKey (KeyCode.RightArrow) && Input.GetKey (KeyCode.UpArrow))  || (angleBetween >= 22.5 && angleBetween < 67.5)) {
 
-			movesUpRight = true;
+                movesUpRight = true;
 
-		} else {
+        } else {
 
-			movesUpRight = false;
-		}
-			
-		// Abfrage für Pfeil nach rechts unten
-		if ((Input.GetKey (KeyCode.RightArrow) && Input.GetKey (KeyCode.DownArrow))  || (angleBetween >= 30 || angleBetween < 60)) {
+                movesUpRight = false;
+        }
 
-			movesDownRight = true;
+         // Abfrage für Pfeil nach rechts unten
+        if ((Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.DownArrow)) || (angleBetween >= 292.5 && angleBetween < 337.5)) {
 
-		} else {
+            movesDownRight = true;
 
-			movesDownRight = false;
-		}
+        } else {
 
-		// Abfrage für Pfeil nach links oben
-		if ((Input.GetKey (KeyCode.LeftArrow) && Input.GetKey (KeyCode.UpArrow))  || (angleBetween >= 210 || angleBetween < 240)) {
+             movesDownRight = false;
+        }
 
-			movesUpLeft = true;
+            // Abfrage für Pfeil nach links oben
+        if ((Input.GetKey (KeyCode.LeftArrow) && Input.GetKey (KeyCode.UpArrow)) || (angleBetween >= 112.5 && angleBetween < 157.5)) {
 
-		} else {
+            movesUpLeft = true;
 
-			movesUpLeft = false;
-		}
+        } else {
 
-		// Abfrage für Pfeil nach links unten
-		if ((Input.GetKey (KeyCode.LeftArrow) && Input.GetKey (KeyCode.DownArrow))  || (angleBetween >= 120 || angleBetween < 150)) {
+            movesUpLeft = false;
+        }
 
-			movesDownLeft = true;
+            // Abfrage für Pfeil nach links unten
+        if ((Input.GetKey (KeyCode.LeftArrow) && Input.GetKey (KeyCode.DownArrow)) || (angleBetween >= 202.5 && angleBetween < 247.5)) {
 
-		} else {
+            movesDownLeft = true;
 
-			movesDownLeft = false;
-		}
-       
-	}
+        } else {
 
-	// Hier werden die Animationen abgespielt
-	public void Animate () {
+            movesDownLeft = false;
+        }
+
+    }
+
+    // Hier werden die Animationen abgespielt
+    public void Animate () {
 
 		// Animation nach oben
 		if (movesUp) {
 
-			anim.SetBool ("movesUp", movesUp);
+            anim.SetBool ("movesUp", movesUp);
 
-		} else {
+        } else {
 
 			anim.SetBool ("movesUp", false);
 		}
@@ -227,56 +226,33 @@ public class PlayerController : MonoBehaviour {
 		}
 
 
-
-
-
 		// Animation nach rechts oben
 		if (movesUpRight) {
-
-			anim.SetBool ("movesRight", movesRight);
-			anim.SetBool ("movesUp", movesUp);
-
-		} else {
-
-			anim.SetBool ("movesRight", false);
-			anim.SetBool ("movesUp", false);
-		}
+            anim.SetBool("movesUpRight", movesUpRight);
+        } else {
+            anim.SetBool("movesUpRight", false);
+        }
 
 		// Animation nach rechts unten
 		if (movesDownRight) {
-
-			anim.SetBool ("movesRight", movesRight);
-			anim.SetBool ("movesDown", movesDown);
-
-		} else {
-
-			anim.SetBool ("movesRight", false);
-			anim.SetBool ("movesDown", false);
-		}
+            anim.SetBool("movesDownRight", movesDownRight);
+        } else {
+            anim.SetBool("movesDownRight", false);
+        }
 
 		// Animation nach links unten
 		if (movesDownLeft) {
-
-			anim.SetBool ("movesLeft", movesLeft);
-			anim.SetBool ("movesDown", movesDown);
-
-		} else {
-
-			anim.SetBool ("movesLeft", false);
-			anim.SetBool ("movesDown", false);
-		}
+            anim.SetBool("movesDownLeft", movesDownLeft);
+        } else {
+            anim.SetBool("movesDownLeft", false);
+        }
 
 		// Animation nach links oben
 		if (movesUpLeft) {
-
-			anim.SetBool ("movesLeft", movesLeft);
-			anim.SetBool ("movesUp", movesUp);
-
-		} else {
-
-			anim.SetBool ("movesLeft", false);
-			anim.SetBool ("movesUp", false);
-		}
+            anim.SetBool("movesUpLeft", movesUpLeft);
+        } else {
+            anim.SetBool("movesUpLeft", false);
+        }
 
 
 	}
