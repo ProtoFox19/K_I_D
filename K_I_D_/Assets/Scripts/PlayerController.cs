@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour {
     private Animator anim;
 
 	// Zugriff auf RigidBody2D
-	//private Rigidbody2D rb2d;
+	private Rigidbody2D rb2d;
 
 	// Blickrichtungen GERADE
 	private bool movesUp = false;
@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour {
 	// Hier werden die Befehle abgerufen
 	void Update () {
 
+		// Aufruf der Methode, welche die Nutzereingabe ueberwacht
 		InputCheck ();
 
 	}
@@ -49,6 +50,7 @@ public class PlayerController : MonoBehaviour {
 	// Wird in einem festen Intervall aufgerufen
 	// Hier werden die Animationen an den Animator übergeben
 	void FixedUpdate() {
+
         
         // Abfrage ob sich der Player nach links, rechts bewegt und den Wert abfangen und in hor speichern
         float hor = Input.GetAxis ("Horizontal");
@@ -68,11 +70,13 @@ public class PlayerController : MonoBehaviour {
 
         Vector3 position = transform.position;
 
+		// Steuerung für Tastatureingabe
         if (Input.GetKey(KeyCode.UpArrow)) position.y += 2.5f * Time.deltaTime;
         if (Input.GetKey(KeyCode.DownArrow)) position.y -= 2.5f * Time.deltaTime;
         if (Input.GetKey(KeyCode.LeftArrow)) position.x -= 2.5f * Time.deltaTime;
         if (Input.GetKey(KeyCode.RightArrow)) position.x += 2.5f * Time.deltaTime;
 
+		// Steuerung über Joystick
         if (moveJoystick.inputDirection != Vector3.zero)
         {
             position += moveJoystick.inputDirection * 0.2f;
@@ -80,6 +84,7 @@ public class PlayerController : MonoBehaviour {
         }
 
         transform.position = position;
+
     }
 
 	// Hier werden die Eingaben abgefragt und die entsprechenden bools werden gesetzt
@@ -137,9 +142,7 @@ public class PlayerController : MonoBehaviour {
 
 			movesRight = false;
 		}
-
-
-
+			
         // Abfrage für Pfeil nach rechts oben
        	if ((Input.GetKey (KeyCode.RightArrow) && Input.GetKey (KeyCode.UpArrow))  || (angleBetween >= 22.5 && angleBetween < 67.5)) {
 
@@ -179,7 +182,6 @@ public class PlayerController : MonoBehaviour {
 
             movesDownLeft = false;
         }
-
     }
 
     // Hier werden die Animationen abgespielt
@@ -224,8 +226,7 @@ public class PlayerController : MonoBehaviour {
 
 			anim.SetBool ("movesRight", false);
 		}
-
-
+			
 		// Animation nach rechts oben
 		if (movesUpRight) {
             anim.SetBool("movesUpRight", movesUpRight);
@@ -253,8 +254,5 @@ public class PlayerController : MonoBehaviour {
         } else {
             anim.SetBool("movesUpLeft", false);
         }
-
-
 	}
-
 }
