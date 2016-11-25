@@ -123,7 +123,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &365729
 MonoBehaviour:
@@ -144,7 +144,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: dd463bf6328125b4f8c213bab0a8cf17, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 642a8c1007ba27d45ad79863300dfe40, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1108,8 +1108,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 600, y: 0}
-  m_SizeDelta: {x: 200, y: 200}
+  m_AnchoredPosition: {x: 631, y: 16}
+  m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1383801444
 MonoBehaviour:
@@ -1130,7 +1130,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 239af3bd53eed2e4895e941b0a8aa04b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: af946e66f1ba8934389665fc3c3fba70, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1525,6 +1525,16 @@ Prefab:
         type: 2}
       propertyPath: healthPoints
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 108000011416815024, guid: 98eeb9f7625584d8b8d7571ba3e74b0d,
+        type: 2}
+      propertyPath: m_Shadows.m_Bias
+      value: 0.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 108000011416815024, guid: 98eeb9f7625584d8b8d7571ba3e74b0d,
+        type: 2}
+      propertyPath: m_Shadows.m_NormalBias
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 98eeb9f7625584d8b8d7571ba3e74b0d, type: 2}
