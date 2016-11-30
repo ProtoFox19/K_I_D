@@ -1,22 +1,27 @@
 fileFormatVersion: 2
-guid: 07c81d8ba1f73c2499c0f292ea538ad0
-timeCreated: 1480520144
+guid: 11b62783a0c439647a94e502cb6c451a
+timeCreated: 1480547965
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: ExtrudeNGON_1
-    100002: //RootNode
-    100004: Formula
-    400000: ExtrudeNGON_1
-    400002: //RootNode
-    400004: Formula
-    2300000: ExtrudeNGON_1
-    2300002: Formula
-    3300000: ExtrudeNGON_1
-    3300002: Formula
-    4300000: ExtrudeNGON_1
-    4300002: Formula
+    100000: ExtrudeOptim_1
+    100002: ExtrudeOptim_2
+    100004: //RootNode
+    100006: Plane
+    400000: ExtrudeOptim_1
+    400002: ExtrudeOptim_2
+    400004: //RootNode
+    400006: Plane
+    2300000: ExtrudeOptim_1
+    2300002: ExtrudeOptim_2
+    2300004: Plane
+    3300000: ExtrudeOptim_1
+    3300002: ExtrudeOptim_2
+    3300004: Plane
+    4300000: ExtrudeOptim_1
+    4300002: ExtrudeOptim_2
+    4300004: Plane
   materials:
     importMaterials: 1
     materialName: 0
