@@ -28,9 +28,6 @@ public class HealthController : MonoBehaviour {
 	private bool isDead = false;
 	private bool isDamageable = true;
 
-	// may the force be with you
-	private float pushForce = 100;
-
 	// RigidBody erzeugen
 	private Rigidbody rb2d;
 
@@ -62,11 +59,6 @@ public class HealthController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-		// Abbremsen des Spielers, falls ein Obstacle getroffen wurde
-		Vector3 currentVelocity = rb2d.velocity;
-		Vector3 oppositeForce = -currentVelocity;
-		rb2d.AddRelativeForce (oppositeForce.x, oppositeForce.y, 0);
 
 		flicker ();
 	}
@@ -131,11 +123,6 @@ public class HealthController : MonoBehaviour {
 
 		// Damage Animation per Trigger??
 
-		// PushBack Animation 
-		float x = transform.position.x;
-		float y = transform.position.y;
-
-		rb2d.AddRelativeForce (-x * pushForce , -y * pushForce, 0);
 	}
 
 	// Erhoeht Health des Spielers

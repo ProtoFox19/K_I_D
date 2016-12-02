@@ -5,13 +5,13 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 
 	//maximale Fortbewegungsgeschwindigkeit
-	public float maxSpeed = 2;
-
+	private float speed = 5;
+	
     // Zugriff auf Animatorkontroller
     private Animator anim;
 
-	// Zugriff auf RigidBody2D
-	private Rigidbody2D rb2d;
+	// Zugriff auf RigidBody
+	private Rigidbody rb;
 
 	// Blickrichtungen GERADE
 	private bool movesUp = false;
@@ -33,7 +33,8 @@ public class PlayerController : MonoBehaviour {
 
 		// Zugriff auf Animator beim Start initialisieren
 		anim = GetComponent<Animator>();
-	//	rb2d = GetComponent<Rigidbody2D>();
+		// Zugriff auf den RigidBody
+		rb = GetComponent<Rigidbody>();
 	}
 	
 	// Update is called once per frame
@@ -42,32 +43,16 @@ public class PlayerController : MonoBehaviour {
 
 		// Aufruf der Methode, welche die Nutzereingabe ueberwacht
 		InputCheck ();
-
 	}
-
-
 
 	// Wird in einem festen Intervall aufgerufen
 	// Hier werden die Animationen an den Animator übergeben
 	void FixedUpdate() {
-
-        
-        // Abfrage ob sich der Player nach links, rechts bewegt und den Wert abfangen und in hor speichern
-        float hor = Input.GetAxis ("Horizontal");
-
-		anim.SetFloat ("speed", Mathf.Abs (hor));
-
-		// Abfrage ob sich der Player nach oben, unten bewegt und den Wert abfangen und in ver speichern
-		float ver = Input.GetAxis ("Vertical");
-
-		/* Zuweisung an das RigidBody um den Player in die entsprechende Richtung zu bewegen
-        Hab ich erstmal rausgenommen da er den Joystick keinen rickbody übergeben kann ... deswegen nicht wundern, an sich brauchen wir auch kein Rickbody soweit ich
-        das bis jetzt beurteilen kann, da wir eh keine Schwerkraft auf unserem Caracter setzen ... aber zunot geht das alles wieder schnell rückgängig zu machen*/
-		//rb2d.velocity = new Vector3 (hor * maxSpeed, ver * maxSpeed);
-        
+	  
 		// Aufruf der Animation Methode
         Animate ();
 
+		// Festlegung des Positionsvektors für die Fortbewegung mittels Positions / Transformkomponente
         Vector3 position = transform.position;
 
 		// Steuerung für Tastatureingabe
@@ -76,15 +61,67 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetKey(KeyCode.LeftArrow)) position.x -= 2.5f * Time.deltaTime;
         if (Input.GetKey(KeyCode.RightArrow)) position.x += 2.5f * Time.deltaTime;
 
+		// Festlegung der Bewegungsichtungen
+		float directionX = moveJoystick.inputDirection.x * speed;
+		float directionY = moveJoystick.inputDirection.y * speed;
+
 		// Steuerung über Joystick
         if (moveJoystick.inputDirection != Vector3.zero)
         {
-            position += moveJoystick.inputDirection * 0.2f;
-
+			// Option A: -- Fortbewegung mittels Position Komponente
+            // position += moveJoystick.inputDirection * 0.2f;
+					
+			// Option B: -- Fortbewegung mittels RigidBody Komponente
         }
+		// Hinzufuegen der Kraft zur Fortbewegung
+		rb.AddForce (directionX, directionY, 0);
 
-        transform.position = position;
+		// Wie stark der Joystick in eine Richtung ausschlaegt
+		// Dies ist nötig damit die Animationen den richtigen Uebergang haben und nicht z.B. folgendes passiert:
+		// moveLeft -> idle -> moveUpLeft, sondern:
+		// moveLeft -> moveupLeft
+		float directionStrengthX;
+		float directionStrengthY;
 
+		// Korrektur des Auschlags und der Velocity, sodass es keine Negativen geben kann...
+		if (directionX < 0) {
+
+			directionStrengthX = -rb.velocity.x;
+
+		} else {
+
+			if (rb.velocity.x < 0) {
+
+				directionStrengthX = -rb.velocity.x;
+
+			} else {
+				
+				directionStrengthX = rb.velocity.x;
+			}
+		}
+
+		if (directionY < 0) {
+
+			directionStrengthY = -rb.velocity.y;
+
+		} else {
+
+			if (rb.velocity.y < 0) {
+
+				directionStrengthY = -rb.velocity.y;
+
+			} else {
+
+				directionStrengthY = rb.velocity.y;
+			}
+		}
+
+		// Uebergabe des Ausschlags an den speed Parameter im Animator
+		// Hiervon haengt der richtige Uebergang der Animationen zueinander ab
+		anim.SetFloat("speed", directionStrengthX + directionStrengthY);
+
+		// -- Fortbewegung mittels Position Komponente
+        // transform.position = position;
     }
 
 	// Hier werden die Eingaben abgefragt und die entsprechenden bools werden gesetzt
@@ -101,7 +138,7 @@ public class PlayerController : MonoBehaviour {
             //angleBetween = 360 - angleBetween;
         }
 
-		        // Abfrage für Pfeil nach oben
+		// Abfrage für Pfeil nach oben
         if (Input.GetKey (KeyCode.UpArrow) || (angleBetween >= 67.5 && angleBetween < 112.5)) {     //(angleBetween >= 240 && angleBetween < 300)
 
             movesUp = true;
@@ -125,7 +162,6 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetKey (KeyCode.LeftArrow) || (angleBetween >= 157.5 && angleBetween < 202.5)) {    
 
 			movesLeft = true;
-
 
         } else {
 
@@ -211,7 +247,6 @@ public class PlayerController : MonoBehaviour {
 		if (movesLeft) {
 
 			anim.SetBool ("movesLeft", movesLeft);
-
 		} else {
 
 			anim.SetBool ("movesLeft", false);

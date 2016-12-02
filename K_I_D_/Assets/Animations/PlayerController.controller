@@ -8,12 +8,6 @@ AnimatorController:
   m_Name: PlayerController
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: movesDown
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
   - m_Name: movesUp
     m_Type: 4
     m_DefaultFloat: 0
@@ -58,6 +52,12 @@ AnimatorController:
     m_Controller: {fileID: 0}
   - m_Name: speed
     m_Type: 1
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: movesDown
+    m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -136,6 +136,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 2
     m_ConditionEvent: movesDownRight
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: speed
+    m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102000013141595608}
   m_Solo: 0
@@ -160,6 +163,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 2
     m_ConditionEvent: movesUp
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: speed
+    m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102000013141595608}
   m_Solo: 0
@@ -211,6 +217,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 2
     m_ConditionEvent: movesDown
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: speed
+    m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102000013141595608}
   m_Solo: 0
@@ -289,6 +298,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 2
     m_ConditionEvent: movesLeft
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: speed
+    m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102000013141595608}
   m_Solo: 0
@@ -490,6 +502,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 2
     m_ConditionEvent: movesUpRight
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: speed
+    m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102000013141595608}
   m_Solo: 0
@@ -646,6 +661,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 2
     m_ConditionEvent: movesDownLeft
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: speed
+    m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102000013141595608}
   m_Solo: 0
@@ -751,6 +769,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 2
     m_ConditionEvent: movesRight
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: speed
+    m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102000013141595608}
   m_Solo: 0
@@ -775,6 +796,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 2
     m_ConditionEvent: movesUpLeft
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: speed
+    m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102000013141595608}
   m_Solo: 0
