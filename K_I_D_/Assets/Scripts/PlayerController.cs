@@ -84,6 +84,7 @@ public class PlayerController : MonoBehaviour {
 		float directionStrengthY;
 
 		// Korrektur des Auschlags und der Velocity, sodass es keine Negativen geben kann...
+		// Wird nur für die Speed Variable im Animator benoetigt!
 		if (directionX < 0) {
 
 			directionStrengthX = -rb.velocity.x;

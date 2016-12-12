@@ -22,8 +22,6 @@ public class HealthController : MonoBehaviour {
 
 	// Eigenschaften des Lichtes
 	public float minLight = 0.5F;
-	public float Lightfreq = 1;
-	public float duration = 0.1F;
 
 	private bool isDead = false;
 	private bool isDamageable = true;
@@ -60,15 +58,7 @@ public class HealthController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		flicker ();
-	}
-
-	// Hier ist das Flimmern des Lichtes animiert
-	void flicker () {
-
-		float phi = Time.time / duration * Lightfreq * Mathf.PI;
-		health = healthPoints * (Mathf.Cos(phi) * 0.5F + 0.5F) + minLight;
-		light.intensity = health;
+		light.intensity -= 0.0001F ;	
 	}
 
 	void ApplyDamage(float damage) {
