@@ -10,7 +10,7 @@ public class HealthController : MonoBehaviour {
 
 	public float maxHealth = 5;
 
-	private float startHealth;
+	public float startHealth = 5;
 
 	// Anzahl der Leben
 	public float healthPoints = 5;
@@ -58,7 +58,15 @@ public class HealthController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		light.intensity -= 0.0001F ;	
+		health -= 0.001F;
+		light.intensity = health;
+
+		CheckDead ();
+	}
+
+	void fixedUpdate () {
+
+
 	}
 
 	void ApplyDamage(float damage) {
@@ -67,21 +75,28 @@ public class HealthController : MonoBehaviour {
 
 			if (isDamageable) {
 
-					healthPoints -= damage;
+				healthPoints -= damage;
+				health -= damage;
 
-					if (health <= minLight) {
+				CheckDead ();
 
-						isDead = true;
-						Dying ();
+				if (health >= minLight) {
 
-					} else {
-
-						Damaging ();
-						isDamageable = false;
-						// Erst 2 Sekunden nach Schadenserhalt, kann der Spieler wieder Schaden nehmen
-						Invoke ("ResetisDamageable", 2);
-					} 
+					Damaging ();
+					isDamageable = false;
+					// Erst 2 Sekunden nach Schadenserhalt, kann der Spieler wieder Schaden nehmen
+					Invoke ("ResetisDamageable", 2);
+				} 
 			}
+		}
+	}
+
+	void CheckDead() {
+
+		if (health <= minLight) {
+
+			isDead = true;
+			Dying ();
 		}
 	}
 
@@ -120,9 +135,7 @@ public class HealthController : MonoBehaviour {
 
 		health += extraHealth;
 
-		health = Mathf.Min (health, maxHealth);
-
-		light.intensity = health;
+		light.intensity = Mathf.Min (health, maxHealth);
 	}
 
 	void StartGame() {

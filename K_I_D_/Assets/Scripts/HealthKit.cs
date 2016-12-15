@@ -5,7 +5,7 @@ public class HealthKit : MonoBehaviour {
 
 	HealthController healthController;
 
-	public float healthPoints = 1;
+	private float healthPoints = 1;
 
 	private float brightness = 3;
 

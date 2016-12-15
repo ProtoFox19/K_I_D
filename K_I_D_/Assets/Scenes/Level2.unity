@@ -1207,8 +1207,9 @@ MonoBehaviour:
   light: {fileID: 0}
   health: 5
   maxHealth: 5
+  startHealth: 5.12
   healthPoints: 5
-  lifePoints: 0
+  lifePoints: 3
   startLifePoints: 3
   minLight: 0.5
 --- !u!114 &718639116
@@ -1961,7 +1962,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a45adb07ed774ea2b8061fdab4a4522, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoints: 1
   light: {fileID: 0}
 --- !u!95 &1493911102
 Animator:
