@@ -43,7 +43,7 @@ public class HealthController : MonoBehaviour {
 		light = GetComponent<Light> ();
 
 		// Level Index muss angepasst werden, wenn es Menü oder Begruessungsszenen gibt
-		if (Application.loadedLevel == 0) {
+		if (Application.loadedLevel == 1) {
 
 			health = startHealth;
 			lifePoints = startLifePoints;
