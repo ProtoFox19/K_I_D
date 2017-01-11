@@ -10,6 +10,7 @@ TagManager:
   - Level
   - BouncerUp
   - BouncerDown
+  - Level1Trigger
   layers:
   - Default
   - TransparentFX

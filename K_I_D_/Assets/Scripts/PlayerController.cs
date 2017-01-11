@@ -28,6 +28,10 @@ public class PlayerController : MonoBehaviour {
     //Um die Joystick eingaben in das Script zu bekommen.
     public virtualJoystick moveJoystick;
 
+	CamBehaviour camBehaviour;
+
+	private float animationDuration;
+
     // Use this for initialization
     void Start () {
 
@@ -35,11 +39,20 @@ public class PlayerController : MonoBehaviour {
 		anim = GetComponent<Animator>();
 		// Zugriff auf den RigidBody
 		rb = GetComponent<Rigidbody>();
+
+		camBehaviour = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<CamBehaviour> ();
 	}
 	
 	// Update is called once per frame
 	// Hier werden die Befehle abgerufen
 	void Update () {
+
+		animationDuration = camBehaviour.animationDuration;
+
+		if (Time.time < animationDuration) {
+
+			return;
+		}
 
 		// Aufruf der Methode, welche die Nutzereingabe ueberwacht
 		InputCheck ();
@@ -48,7 +61,14 @@ public class PlayerController : MonoBehaviour {
 	// Wird in einem festen Intervall aufgerufen
 	// Hier werden die Animationen an den Animator übergeben
 	void FixedUpdate() {
-	  
+
+		animationDuration = camBehaviour.animationDuration;
+
+		if (Time.time < animationDuration) {
+
+			return;
+		}
+
 		// Aufruf der Animation Methode
         Animate ();
 

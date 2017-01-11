@@ -10,7 +10,13 @@ public class TriggerCounter : MonoBehaviour {
 
 	ArrayList numbersRB = new ArrayList();
 
+	CamBehaviour camBehaviour;
+
+	private float animationDuration;
+
 	void Start() {
+
+		camBehaviour = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<CamBehaviour> ();
 
 		// RigidBody der Zahlen von 1 bis 9 abspeichern;
 		for (float numbers = 1; numbers <= 9; numbers ++) {
@@ -24,6 +30,24 @@ public class TriggerCounter : MonoBehaviour {
 			numberRB.useGravity = false;
 			numbersRB.Add (numberRB);
 		}
+	}
+
+	void Update() {
+
+		animationDuration = camBehaviour.animationDuration;
+
+		if (Time.time < animationDuration - 1) {
+
+			return;
+		}
+
+		//der Null die Gravitation geben
+		justTheZero ();
+	}
+
+	void justTheZero () {
+
+		GameObject.Find ("/Numbers/0").GetComponent<Rigidbody> ().useGravity = true;
 	}
 
 	// Aktivierung der Gravitation der getriggerten Zahl
