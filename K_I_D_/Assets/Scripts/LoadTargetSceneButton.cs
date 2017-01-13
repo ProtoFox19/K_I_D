@@ -16,7 +16,7 @@ public class LoadTargetSceneButton : MonoBehaviour {
         else { 
             if (PlayerPrefs.GetInt(sceneToLoad.ToString()) == 1) {
                 this.GetComponent<Button>().interactable = true;
-                this.GetComponentInChildren<Text>().text = "\n\n\nHighscore:\n" + PlayerPrefs.GetInt("Level" + sceneToLoad);
+                this.GetComponentInChildren<Text>().text = "\n\n\nHighscore:\n" + PlayerPrefs.GetInt("Level"+sceneToLoad);
                 Screenshotgesperrt.SetActive(false);
                 Screenshotfrei.SetActive(true);
             } else {

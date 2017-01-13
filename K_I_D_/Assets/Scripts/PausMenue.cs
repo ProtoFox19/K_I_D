@@ -8,9 +8,12 @@ public class PausMenue : MonoBehaviour
     // Objekte die Versteckt werden muessen, oder sichtbar gemacht werden muessen
     public GameObject Pauseb, Weissesoverlay, Roterrand, Weiterspielen, Neustart, Hauptmenue;
 
+    private float speicherSpielzeit = GameObject.Find("Player").GetComponent<PlayerController>().getSpielzeit();
+    private float speicherHelligkeit = 5.12f;
     //Am Anfang soll der zustand des nicht gedrueckten Pausenbuttons herschen
     public void Start()
     {
+        speicherHelligkeit = 5.12f;
         OnWeiterspielenButton();
     }
 

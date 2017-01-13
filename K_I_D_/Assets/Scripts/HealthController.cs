@@ -32,9 +32,10 @@ public class HealthController : MonoBehaviour {
 
 		rb2d = GetComponent<Rigidbody> ();
 		anim = GetComponent<Animator> ();
-		playerController = GetComponent<PlayerController> ();
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
 
-		light = GetComponent<Light>();
+
+        light = GetComponent<Light>();
 
 		health = startHealth;
 
@@ -43,13 +44,14 @@ public class HealthController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		health -= 0.0008F;
+		health -= 0.05F * Time.deltaTime;
 		light.intensity = health;
 
 		CheckDead ();
 	}
 
 	void fixedUpdate () {
+
     }
 
 	void ApplyDamage(float damage) {
@@ -103,9 +105,14 @@ public class HealthController : MonoBehaviour {
 	// Erhoeht Health des Spielers
 	public void AddHealth (float extraHealth) {
 
-		health += extraHealth;
-
-		light.intensity = Mathf.Min (health, maxHealth);
+        float tempHealth = health + extraHealth;
+        if (tempHealth > maxHealth)
+        {
+            health = maxHealth;
+        }else { 
+		    health += extraHealth;
+        }
+		light.intensity = health;
 	}
 
 	void StartGame() {

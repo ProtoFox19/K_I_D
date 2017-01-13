@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour {
 	// Zugriff auf RigidBody
 	private Rigidbody rb;
 
+    private float spielzeit;
+
 	// Blickrichtungen GERADE
 	private bool movesUp = false;
 	private bool movesDown = false;
@@ -56,7 +58,21 @@ public class PlayerController : MonoBehaviour {
 
 		// Aufruf der Methode, welche die Nutzereingabe ueberwacht
 		InputCheck ();
-	}
+
+        spielzeit += Time.deltaTime;
+     //   Debug.Log(spielzeit);
+
+    }
+
+    public float getSpielzeit()
+    {
+        return spielzeit;
+    }
+
+    public void setSpielzeit(float neueSpielzeit)
+    {
+        spielzeit = neueSpielzeit;
+    }
 
 	// Wird in einem festen Intervall aufgerufen
 	// Hier werden die Animationen an den Animator übergeben
