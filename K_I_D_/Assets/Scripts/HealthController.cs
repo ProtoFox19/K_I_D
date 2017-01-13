@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class HealthController : MonoBehaviour {
 
@@ -12,16 +13,9 @@ public class HealthController : MonoBehaviour {
 
 	public float startHealth = 5;
 
-	// Anzahl der Leben
-	public float healthPoints = 5;
-
-	// Anzahl der Lifepoints
-	public float lifePoints = 3;
-
-	public float startLifePoints = 3;
 
 	// Eigenschaften des Lichtes
-	public float minLight = 0.5F;
+	public float minLight = 0.12F;
 
 	private bool isDead = false;
 	private bool isDamageable = true;
@@ -40,34 +34,23 @@ public class HealthController : MonoBehaviour {
 		anim = GetComponent<Animator> ();
 		playerController = GetComponent<PlayerController> ();
 
-		light = GetComponent<Light> ();
+		light = GetComponent<Light>();
 
-		// Level Index muss angepasst werden, wenn es Menü oder Begruessungsszenen gibt
-		if (Application.loadedLevel == 1) {
+		health = startHealth;
 
-			health = startHealth;
-			lifePoints = startLifePoints;
-
-		} else {
-
-			health = PlayerPrefs.GetFloat ("Health");
-			lifePoints = PlayerPrefs.GetFloat ("lifePoints");
-		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-		health -= 0.001F;
+		health -= 0.0008F;
 		light.intensity = health;
 
 		CheckDead ();
 	}
 
 	void fixedUpdate () {
-
-
-	}
+    }
 
 	void ApplyDamage(float damage) {
 
@@ -75,7 +58,6 @@ public class HealthController : MonoBehaviour {
 
 			if (isDamageable) {
 
-				healthPoints -= damage;
 				health -= damage;
 
 				CheckDead ();
@@ -94,7 +76,6 @@ public class HealthController : MonoBehaviour {
 	void CheckDead() {
 
 		if (health <= minLight) {
-
 			isDead = true;
 			Dying ();
 		}
@@ -106,22 +87,11 @@ public class HealthController : MonoBehaviour {
 	}
 		
 	void Dying () {
-
 		// Dying / Wake Up Animation
 		playerController.enabled = false;
 
-		lifePoints --;
-
-		if (lifePoints >= 0) {
-
-			// Nach 2 Sekunden wird das Level neu gestartet
-			Invoke ("StartGame", 2);
-
-
-		} else {
-
-			// Nach 3 Sekunden wird das Spiel neu gestartet
-			Invoke ("RestartLevel", 3);		}
+        // Nach 2 Sekunden wird das Level neu gestartet
+        Invoke ("StartGame", 2);
 	}
 
 	void Damaging () {
@@ -139,21 +109,7 @@ public class HealthController : MonoBehaviour {
 	}
 
 	void StartGame() {
-
-		Application.LoadLevel (0);
+		SceneManager.LoadScene(2);  //habs mit dem SceneManager gemacht, ist wohl das neuste was man benutzen soll ...
 	}
 
-	void RestartLevel() {
-
-		health = startHealth;
-		isDead = false;
-		// Animation auf idle zurücksetzen
-		playerController.enabled = true;
-	}
-
-	void onDestroy () {
-
-		PlayerPrefs.SetFloat ("Health", health);
-		PlayerPrefs.SetFloat ("LifePoints", lifePoints);
-	}
 }

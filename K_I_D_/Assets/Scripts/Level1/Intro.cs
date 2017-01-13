@@ -15,15 +15,15 @@ public class Intro : MonoBehaviour {
 
 	public string live2 = "... dieses Licht stellt dein Leben dar";
 
-	public string live3 = "... lasse es nicht erlischen und sammle dazu die schwebenden Lichter ein";
+	public string live3 = "... lasse es nicht erlischen!\nSammle dazu die schwebenden Lichter ein";
 
-	public string shadows = "Pass gut auf die Schatten auf! Sie entziehen dir Licht !";
+	public string shadows = "Pass gut auf die Schatten auf!\n Sie entziehen dir Licht !";
 
 	public string tip = "Siehe dich immer gut um und nutze deine Umgebung";
 
-	public string collapse = "Was ist das? Was passiert? Es bricht alles zusammen ?!?!";
+	public string collapse = "Was ist das? Was passiert?\n Es bricht alles zusammen ?!?!";
 
-	public string fall = "Nein ... Neeeiinn ... Ich kann nicht ... mein Traum zerfällt !!";
+	public string fall = "Nein ... Neeeiinn ... Ich kann nicht ...\n mein Traum zerfällt !!";
 
 	private Text text;
 
@@ -37,8 +37,8 @@ public class Intro : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
-		text = GetComponent<Text> ();
+        GameObject.Find("Main Camera").GetComponent<Fading>().BeginFade(-1);
+        text = GetComponent<Text> ();
 
 		elements = GameObject.Find ("/Elements");
 
@@ -95,7 +95,16 @@ public class Intro : MonoBehaviour {
 
 			items [i].GetComponent<Rigidbody> ().useGravity = true;
 		}
-	}
+
+        yield return new WaitForSeconds(2);
+
+        GameObject.Find("Main Camera").GetComponent<Fading>().BeginFade(1);
+        yield return new WaitForSeconds(2);
+
+        LoadTargetSceneButton simulateButton = new LoadTargetSceneButton();
+        PlayerPrefs.SetInt("2", 1);
+        simulateButton.LoadSceneNum(2);
+    }
 		
 	public void count () {
 

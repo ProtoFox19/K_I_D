@@ -5,7 +5,7 @@ public class HealthKit : MonoBehaviour {
 
 	HealthController healthController;
 
-	private float healthPoints = 1;
+	public float healthPoints = 1;
 
 	private float brightness = 3;
 
@@ -22,7 +22,7 @@ public class HealthKit : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		healthController = GameObject.FindGameObjectWithTag ("Player").GetComponent<HealthController> ();
-		light = GetComponent<Light> ();
+		light = GetComponent<Light>();
 	}
 
 	void Update () {

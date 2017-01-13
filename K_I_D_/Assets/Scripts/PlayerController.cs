@@ -5,7 +5,7 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 
 	//maximale Fortbewegungsgeschwindigkeit
-	private float speed = 5;
+	private float speed = 12;
 	
     // Zugriff auf Animatorkontroller
     private Animator anim;

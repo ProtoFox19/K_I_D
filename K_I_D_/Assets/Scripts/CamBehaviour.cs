@@ -24,7 +24,9 @@ public class CamBehaviour : MonoBehaviour
     void Start()
     {
 
-		if (level1 == true) {
+        GameObject.Find("Main Camera").GetComponent<Fading>().BeginFade(-1);        //Fading 
+
+        if (level1 == true) {
 			animationOffset = new Vector3 (0, 0, -40);
 		}
 
