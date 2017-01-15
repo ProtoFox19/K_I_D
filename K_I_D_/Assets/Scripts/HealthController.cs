@@ -116,7 +116,7 @@ public class HealthController : MonoBehaviour {
 	}
 
 	void StartGame() {
-		SceneManager.LoadScene(2);  //habs mit dem SceneManager gemacht, ist wohl das neuste was man benutzen soll ...
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);  //habs mit dem SceneManager gemacht, ist wohl das neuste was man benutzen soll ...
 	}
 
 }

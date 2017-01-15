@@ -114,7 +114,7 @@ QualitySettings:
     name: Beautiful
     pixelLightCount: 3
     shadows: 2
-    shadowResolution: 2
+    shadowResolution: 0
     shadowProjection: 1
     shadowCascades: 2
     shadowDistance: 70
@@ -122,13 +122,13 @@ QualitySettings:
     shadowCascade2Split: 0.33333334
     shadowCascade4Split: {x: 0.06666667, y: 0.2, z: 0.46666667}
     blendWeights: 4
-    textureQuality: 0
-    anisotropicTextures: 2
-    antiAliasing: 2
-    softParticles: 1
+    textureQuality: 1
+    anisotropicTextures: 0
+    antiAliasing: 0
+    softParticles: 0
     softVegetation: 1
     realtimeReflectionProbes: 1
-    billboardsFaceCameraPosition: 1
+    billboardsFaceCameraPosition: 0
     vSyncCount: 1
     lodBias: 1.5
     maximumLODLevel: 0

@@ -21,7 +21,6 @@ public class DreieckBewegung : MonoBehaviour {
             pos.x = 825;
         }
         transform.position = pos;
-        Debug.Log(pos);
     }
 
 
