@@ -28,6 +28,8 @@ public class HealthKit : MonoBehaviour {
 	void Update () {
 
 		flicker ();
+
+
 	}
 
 	// Hier ist das Flimmern des Lichtes animiert

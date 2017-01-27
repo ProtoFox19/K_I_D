@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour {
 
 	//maximale Fortbewegungsgeschwindigkeit
 	private float speed = 6;
-	
+
     // Zugriff auf Animatorkontroller
     private Animator anim;
 
@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour {
 
 		camBehaviour = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<CamBehaviour> ();
 	}
-	
+
 	// Update is called once per frame
 	// Hier werden die Befehle abgerufen
 	void Update () {
@@ -106,7 +106,7 @@ public class PlayerController : MonoBehaviour {
         {
 			// Option A: -- Fortbewegung mittels Position Komponente
             // position += moveJoystick.inputDirection * 0.2f;
-					
+
 			// Option B: -- Fortbewegung mittels RigidBody Komponente
         }
 		// Hinzufuegen der Kraft zur Fortbewegung
@@ -132,7 +132,7 @@ public class PlayerController : MonoBehaviour {
 				directionStrengthX = -rb.velocity.x;
 
 			} else {
-				
+
 				directionStrengthX = rb.velocity.x;
 			}
 		}
@@ -168,7 +168,7 @@ public class PlayerController : MonoBehaviour {
         float y = moveJoystick.inputDirection.y;
         double angleBetween=361;
 
-        if (moveJoystick.inputDirection != Vector3.zero) { 
+        if (moveJoystick.inputDirection != Vector3.zero) {
             Vector2 v2 = new Vector2(x, y);
             angleBetween = Mathf.Atan2(v2.y, v2.x) * Mathf.Rad2Deg;
             if (angleBetween < 0) angleBetween = 360 + angleBetween;
@@ -182,12 +182,12 @@ public class PlayerController : MonoBehaviour {
 
         } else {
 
-			movesUp = false; 
+			movesUp = false;
         }
-			
+
 		// Abfrage für Pfeil nach unten
 		if (Input.GetKey (KeyCode.DownArrow) || (angleBetween >= 247.5 && angleBetween < 292.5)) { //(angleBetween >= 60 && angleBetween < 120)
-        
+
             movesDown = true;
 
         } else {
@@ -196,7 +196,7 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		// Abfrage für Pfeil nach links
-		if (Input.GetKey (KeyCode.LeftArrow) || (angleBetween >= 157.5 && angleBetween < 202.5)) {    
+		if (Input.GetKey (KeyCode.LeftArrow) || (angleBetween >= 157.5 && angleBetween < 202.5)) {
 
 			movesLeft = true;
 
@@ -207,7 +207,7 @@ public class PlayerController : MonoBehaviour {
 
 		// Abfrage für Pfeil nach rechts
 		if (Input.GetKey (KeyCode.RightArrow) || ((angleBetween >= 337.5 && angleBetween <= 360 ) || (angleBetween < 22.5 && angleBetween > 0))) {      //&& angleBetween!=361
-        
+
             movesRight = true;
 
 
@@ -215,7 +215,7 @@ public class PlayerController : MonoBehaviour {
 
 			movesRight = false;
 		}
-			
+
         // Abfrage für Pfeil nach rechts oben
        	if ((Input.GetKey (KeyCode.RightArrow) && Input.GetKey (KeyCode.UpArrow))  || (angleBetween >= 22.5 && angleBetween < 67.5)) {
 
@@ -266,7 +266,7 @@ public class PlayerController : MonoBehaviour {
             anim.SetBool ("movesUp", movesUp);
 
         } else {
-
+					
 			anim.SetBool ("movesUp", false);
 		}
 
@@ -298,7 +298,7 @@ public class PlayerController : MonoBehaviour {
 
 			anim.SetBool ("movesRight", false);
 		}
-			
+
 		// Animation nach rechts oben
 		if (movesUpRight) {
             anim.SetBool("movesUpRight", movesUpRight);

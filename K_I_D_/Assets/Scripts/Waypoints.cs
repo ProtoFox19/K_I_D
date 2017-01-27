@@ -6,7 +6,7 @@ public class Waypoints : MonoBehaviour {
 	// Speicher für die Punkte
 	public Transform[] wayPoint;
 
-	public int currentWayPoint = 0; 
+	public int currentWayPoint = 0;
 	Transform targetWayPoint;
 
 	public float speed = 4f;
@@ -30,7 +30,7 @@ public class Waypoints : MonoBehaviour {
 		if(reachedEnd == false) {
 			if(targetWayPoint == null)
 				targetWayPoint = wayPoint[currentWayPoint];
-			
+
 			walk();
 		}
 
@@ -38,7 +38,7 @@ public class Waypoints : MonoBehaviour {
 		if(reachedEnd == true) {
 			if(targetWayPoint == null)
 				targetWayPoint = wayPoint[currentWayPoint - 1];
-			
+
 			walk();
 		}
 	}
@@ -63,7 +63,7 @@ public class Waypoints : MonoBehaviour {
 		}
 
 		if((transform.position == targetWayPoint.position) && reachedEnd == true) {
-			
+
 			if (!(currentWayPoint == 0)) {
 
 				currentWayPoint -- ;
@@ -74,5 +74,5 @@ public class Waypoints : MonoBehaviour {
 				reachedEnd = false;
 			}
 		}
-	} 
+	}
 }
