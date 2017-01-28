@@ -6,13 +6,20 @@ public class CollisionBehaviour : MonoBehaviour {
 	// RigidBody erzeugen
 	private Rigidbody rb;
 
+	private Animator anim;
+
 	//Um die Joystick eingaben in das Script zu bekommen.
 	public virtualJoystick moveJoystick;
 
 	// may the force be with you
 	private float pushForce = 50;
 
+
+
+
 	void OnTriggerEnter (Collider other) {
+
+
 
 		if (other.CompareTag ("Obstacle")) {
 
@@ -22,13 +29,29 @@ public class CollisionBehaviour : MonoBehaviour {
 		
 			// Kraft für den Rückstoß, wenn ein Obstacle beruehrt wird
 			rb.AddForce (x * pushForce , y * pushForce, 0);
+
+
+
+
 		}
 	}
+
+
+	/*void OnCollisionEnter(Collision other) {
+
+
+
+		if (other.collider.CompareTag ("Number")) {
+
+			GetComponent<AudioSource> ().Play ();
+		}
+	} */
 
 	// Use this for initialization
 	void Start () {
 
 		rb = GetComponent<Rigidbody> ();
+
 	}
 	
 	// Update is called once per frame

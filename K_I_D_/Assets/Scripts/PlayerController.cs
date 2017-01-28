@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour {
 	private bool movesDownRight = false;
 	private bool movesDownLeft = false;
 
+
     //Um die Joystick eingaben in das Script zu bekommen.
     public virtualJoystick moveJoystick;
 
@@ -43,6 +44,7 @@ public class PlayerController : MonoBehaviour {
 		rb = GetComponent<Rigidbody>();
 
 		camBehaviour = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<CamBehaviour> ();
+	
 	}
 
 	// Update is called once per frame
@@ -259,6 +261,7 @@ public class PlayerController : MonoBehaviour {
 
     // Hier werden die Animationen abgespielt
     public void Animate () {
+
 
 		// Animation nach oben
 		if (movesUp) {

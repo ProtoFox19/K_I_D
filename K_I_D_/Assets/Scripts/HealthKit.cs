@@ -18,11 +18,11 @@ public class HealthKit : MonoBehaviour {
 
 	public Light light;
 
-
 	// Use this for initialization
 	void Start () {
 		healthController = GameObject.FindGameObjectWithTag ("Player").GetComponent<HealthController> ();
 		light = GetComponent<Light>();
+
 	}
 
 	void Update () {
@@ -43,9 +43,13 @@ public class HealthKit : MonoBehaviour {
 	void OnTriggerEnter (Collider other) {
 
 		if (other.gameObject.CompareTag ("Player")) {
-			
+
+
+
 			healthController.AddHealth (healthPoints);
 			Destroy(gameObject);
+
+
 		}
 	}
 }

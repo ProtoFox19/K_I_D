@@ -27,12 +27,19 @@ public class HealthController : MonoBehaviour {
 	Animator anim;
 	PlayerController playerController;
 
+	public AudioClip clip;
+
 	// Use this for initialization
 	void Start () {
+
+		GetComponent<AudioSource> ().playOnAwake = false;
+
+		GetComponent<AudioSource>().clip = clip;
 
 		rb2d = GetComponent<Rigidbody> ();
 		anim = GetComponent<Animator> ();
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+
 
 
         light = GetComponent<Light>();
@@ -62,6 +69,38 @@ public class HealthController : MonoBehaviour {
 
 				health -= damage;
 
+				if (anim.GetBool ("movesLeft") || anim.GetBool ("movesDownLeft") || anim.GetBool ("movesUpLeft")) {
+
+					anim.SetTrigger ("hitLeft");
+
+				}
+
+				else if (anim.GetBool ("movesRight") || anim.GetBool ("movesDownRight") || anim.GetBool ("movesUpRight")) {
+
+
+					anim.SetTrigger ("hitRight");
+
+				}
+
+				else if (anim.GetBool ("movesUp")) {
+
+
+					anim.SetTrigger ("hitUp");
+
+				}
+
+				else if (anim.GetBool ("movesDown")) {
+
+
+					anim.SetTrigger ("hitDown");
+
+				}
+
+				else {
+
+					anim.SetTrigger ("hitRight");
+				}
+
 				CheckDead ();
 
 				if (health >= minLight) {
@@ -79,6 +118,8 @@ public class HealthController : MonoBehaviour {
 
 		if (health <= minLight) {
 			isDead = true;
+
+
 			Dying ();
 		}
 	}
@@ -89,6 +130,8 @@ public class HealthController : MonoBehaviour {
 	}
 		
 	void Dying () {
+		anim.SetBool ("isDead", true);
+
 		// Dying / Wake Up Animation
 		playerController.enabled = false;
 
@@ -104,6 +147,8 @@ public class HealthController : MonoBehaviour {
 
 	// Erhoeht Health des Spielers
 	public void AddHealth (float extraHealth) {
+
+		GetComponent<AudioSource> ().Play ();
 
         float tempHealth = health + extraHealth;
         if (tempHealth > maxHealth)
