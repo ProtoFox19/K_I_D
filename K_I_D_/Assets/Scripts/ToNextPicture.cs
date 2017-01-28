@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class ToNextPicture : MonoBehaviour {
 
-    public GameObject _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, poly;
+    public GameObject _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, poly;
 
     void Start()
     {
@@ -14,9 +14,9 @@ public class ToNextPicture : MonoBehaviour {
 
     public void OnFirstPictures(string num)
     {
-        GameObject[] gameOb = new GameObject[] { _1, _2, _3, _4, _5, _6, _7, _8, _9};
+        GameObject[] gameOb = new GameObject[] { _1, _2, _3, _4, _5, _6, _7, _8, _9, _10};
 
-        for (int i=0; i < 8; i++)
+        for (int i=0; i < 9; i++)
         {
             if (gameOb[i].name.Equals(num))
             {
@@ -36,11 +36,8 @@ public class ToNextPicture : MonoBehaviour {
 
     IEnumerator nextPictures()
     {
-        _9.SetActive(false);
-        _10.SetActive(true);
-        yield return new WaitForSeconds(1);
-        _11.SetActive(true);
         _10.SetActive(false);
+        _11.SetActive(true);
         yield return new WaitForSeconds(1);
         _12.SetActive(true);
         _11.SetActive(false);
@@ -50,6 +47,9 @@ public class ToNextPicture : MonoBehaviour {
         yield return new WaitForSeconds(1);
         _14.SetActive(true);
         _13.SetActive(false);
+        yield return new WaitForSeconds(1);
+        _15.SetActive(true);
+        _14.SetActive(false);
 
         GameObject.Find("Main Camera").GetComponent<Fading>().BeginFade(1);
         yield return new WaitForSeconds(2);

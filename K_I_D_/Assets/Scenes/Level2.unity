@@ -235,6 +235,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 65843037}
   - 82: {fileID: 65843036}
+  - 114: {fileID: 65843038}
   m_Layer: 0
   m_Name: Sound
   m_TagString: Untagged
@@ -329,6 +330,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 15
+--- !u!114 &65843038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 65843035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d913cebec625c5946b4c1f164f0201a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musik: {fileID: 65843036}
 --- !u!1 &68446295
 GameObject:
   m_ObjectHideFlags: 0
@@ -632,6 +645,11 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: ef58a6382509440c4b877b305696b332,
         type: 3}
+    - target: {fileID: 114000014113898708, guid: 3e5a23814502443c28168cdb648ebc45,
+        type: 2}
+      propertyPath: healthPoints
+      value: 1.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3e5a23814502443c28168cdb648ebc45, type: 2}
   m_IsPrefabParent: 0
@@ -1114,7 +1132,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 26
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -1381,7 +1399,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 26
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -2147,8 +2165,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 60}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 0, y: 75}
+  m_SizeDelta: {x: 350, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &529867061
 MonoBehaviour:
@@ -2169,9 +2187,9 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.25048658, g: 0.3025219, b: 0.8308824, a: 1}
-    m_HighlightedColor: {r: 0.16046713, g: 0.21595858, b: 0.7794118, a: 1}
-    m_PressedColor: {r: 0.16046713, g: 0.21595858, b: 0.7794118, a: 1}
+    m_NormalColor: {r: 0.05882353, g: 0.5176471, b: 0.7411765, a: 1}
+    m_HighlightedColor: {r: 0.15686275, g: 0.15686275, b: 0.47058824, a: 1}
+    m_PressedColor: {r: 0.15686275, g: 0.15686275, b: 0.47058827, a: 1}
     m_DisabledColor: {r: 0.7352941, g: 0.4974048, b: 0.4974048, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -2563,8 +2581,8 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000061035156, y: -80}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -0.000061035156, y: -100}
+  m_SizeDelta: {x: 350, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &568402154
 MonoBehaviour:
@@ -2585,9 +2603,9 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.25048658, g: 0.3025219, b: 0.8308824, a: 1}
-    m_HighlightedColor: {r: 0.16046713, g: 0.21595858, b: 0.7794118, a: 1}
-    m_PressedColor: {r: 0.16046713, g: 0.21595858, b: 0.7794118, a: 1}
+    m_NormalColor: {r: 0.05882353, g: 0.5176471, b: 0.7411765, a: 1}
+    m_HighlightedColor: {r: 0.15686275, g: 0.15686275, b: 0.47058824, a: 1}
+    m_PressedColor: {r: 0.15686275, g: 0.15686275, b: 0.47058827, a: 1}
     m_DisabledColor: {r: 0.7352941, g: 0.4974048, b: 0.4974048, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -3609,7 +3627,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.629}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4855,6 +4873,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 114000014113898708, guid: 3e5a23814502443c28168cdb648ebc45,
+        type: 2}
+      propertyPath: healthPoints
+      value: 2.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3e5a23814502443c28168cdb648ebc45, type: 2}
   m_IsPrefabParent: 0
@@ -5657,6 +5680,11 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: ef58a6382509440c4b877b305696b332,
         type: 3}
+    - target: {fileID: 114000014113898708, guid: 3e5a23814502443c28168cdb648ebc45,
+        type: 2}
+      propertyPath: healthPoints
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3e5a23814502443c28168cdb648ebc45, type: 2}
   m_IsPrefabParent: 0
@@ -6304,6 +6332,11 @@ Prefab:
       propertyPath: m_Name
       value: HealthKit 1 (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 114000014113898708, guid: 3e5a23814502443c28168cdb648ebc45,
+        type: 2}
+      propertyPath: healthPoints
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3e5a23814502443c28168cdb648ebc45, type: 2}
   m_IsPrefabParent: 0
@@ -6361,6 +6394,11 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: ef58a6382509440c4b877b305696b332,
         type: 3}
+    - target: {fileID: 114000014113898708, guid: 3e5a23814502443c28168cdb648ebc45,
+        type: 2}
+      propertyPath: healthPoints
+      value: 2.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3e5a23814502443c28168cdb648ebc45, type: 2}
   m_IsPrefabParent: 0
@@ -6494,8 +6532,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 130.5}
-  m_SizeDelta: {x: 300, y: 50}
+  m_AnchoredPosition: {x: 0, y: 150}
+  m_SizeDelta: {x: 500, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1357740347
 MonoBehaviour:
@@ -6518,11 +6556,11 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 40
+    m_FontSize: 60
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
-    m_MaxSize: 40
+    m_MaxSize: 60
     m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -7079,6 +7117,11 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: b80c827e18a5742d188840edc8c1ee4e,
         type: 3}
+    - target: {fileID: 114000014113898708, guid: 3e5a23814502443c28168cdb648ebc45,
+        type: 2}
+      propertyPath: healthPoints
+      value: 3.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3e5a23814502443c28168cdb648ebc45, type: 2}
   m_IsPrefabParent: 0
@@ -8142,7 +8185,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.000061035, y: -10}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 350, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1592373474
 MonoBehaviour:
@@ -8163,9 +8206,9 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.25048658, g: 0.3025219, b: 0.8308824, a: 1}
-    m_HighlightedColor: {r: 0.16046713, g: 0.21595858, b: 0.7794118, a: 1}
-    m_PressedColor: {r: 0.16046713, g: 0.21595858, b: 0.7794118, a: 1}
+    m_NormalColor: {r: 0.05882353, g: 0.5176471, b: 0.7411765, a: 1}
+    m_HighlightedColor: {r: 0.15686275, g: 0.15686275, b: 0.47058824, a: 1}
+    m_PressedColor: {r: 0.15686275, g: 0.15686275, b: 0.47058827, a: 1}
     m_DisabledColor: {r: 0.7352941, g: 0.4974048, b: 0.4974048, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -8285,7 +8328,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 26
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -10346,6 +10389,11 @@ Prefab:
     - target: {fileID: 1000011564569308, guid: 3e5a23814502443c28168cdb648ebc45, type: 2}
       propertyPath: m_Name
       value: HealthKit 1 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000014113898708, guid: 3e5a23814502443c28168cdb648ebc45,
+        type: 2}
+      propertyPath: healthPoints
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3e5a23814502443c28168cdb648ebc45, type: 2}

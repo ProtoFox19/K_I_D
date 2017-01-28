@@ -5,25 +5,33 @@ using System.Collections.Generic;
 
 public class Intro : MonoBehaviour {
 
-	public string welcome = "Benutze das Steuerkreuz zur Bewegung ... ";
+	public string welcome;
 
-	public string move = "... Nehme dir ein wenig Zeit, dich umzuschauen";
+	public string move;
 
-	public string where = "Du befindest dich gerade in einem Traum";
+	public string where;
 
-	public string live = "Deine Spielerfigur verliert mit der Zeit an Licht ... ";
+	public string live;
 
-	public string live2 = "... dieses Licht stellt dein Leben dar";
+	public string live2;
 
-	public string live3 = "... lasse es nicht erlischen!\nSammle dazu die schwebenden Lichter ein";
+	public string live3;
 
-	public string shadows = "Pass gut auf die Schatten auf!\n Sie entziehen dir Licht !";
+    public string live4;
 
-	public string tip = "Siehe dich immer gut um und nutze deine Umgebung";
+    public string shadows;
 
-	public string collapse = "Was ist das? Was passiert?\n Es bricht alles zusammen ?!?!";
+    public string shadows2;
 
-	public string fall = "Nein ... Neeeiinn ... Ich kann nicht ...\n mein Traum zerfällt !!";
+    public string tip;
+
+    public string tip2;
+
+    public string collapse;
+
+    public string collapse2;
+
+    public string fall;
 
 	private Text text;
 
@@ -35,16 +43,19 @@ public class Intro : MonoBehaviour {
 
 	private GameObject[] items;
 
-	// Use this for initialization
-	void Start () {
+    bool go = false;
+
+    // Use this for initialization
+    void Start () {
         GameObject.Find("Main Camera").GetComponent<Fading>().BeginFade(-1);
         text = GetComponent<Text> ();
+        text.color = new Color(0f, 0f, 0f, 0.8f);
 
 		elements = GameObject.Find ("/Elements");
 
-		messages = new string[10];
-
-		messages [0] = welcome;
+		messages = new string[13];
+        
+        messages [0] = welcome;
 
 		messages [1] = move;
 
@@ -56,13 +67,21 @@ public class Intro : MonoBehaviour {
 
 		messages [5] = live3;
 
-		messages [6] = shadows;
+        messages[6] = live4;
 
-		messages [7] = tip;
+        messages [7] = shadows;
 
-		messages [8] = collapse;
+        messages[8] = shadows2;
 
-		InvokeRepeating ("count", 5f, 5f);
+        messages [9] = tip;
+
+        messages[10] = tip2;
+
+        messages [11] = collapse;
+
+        messages[12] = collapse2;
+
+        InvokeRepeating ("count", 3f, 3f);
 	}
 
 	// Update is called once per frame
@@ -91,7 +110,7 @@ public class Intro : MonoBehaviour {
 
 		for (int i = 0; i < items.Length; i++) {
 
-			yield return new WaitForSeconds(0.2f);
+			yield return new WaitForSeconds(0.15f);
 
 			items [i].GetComponent<Rigidbody> ().useGravity = true;
 		}
@@ -108,18 +127,20 @@ public class Intro : MonoBehaviour {
 		
 	public void count () {
 
-		if (counter < messages.Length) {
+        if (go)
+        {
 
+            text.text = fall;
+
+            StartCoroutine(activateGravity());
+        }
+
+        if (counter < messages.Length) {
 			text.text = messages [counter];
+            counter++;
+            if (counter >= 13) go = true;
+        }
 
-			counter ++;
-		}
-
-		if (counter >= messages.Length) {
-
-			text.text = fall;
-
-			StartCoroutine(activateGravity ());
-		}
+		
 	}
 }

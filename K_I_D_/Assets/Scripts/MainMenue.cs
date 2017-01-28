@@ -94,7 +94,11 @@ public class MainMenue : MonoBehaviour {
     {
         if (clicked)
         {
+            float musik = PlayerPrefs.GetFloat("MusicVolumen");
+            float effekt = PlayerPrefs.GetFloat("EffektVolumen");
             PlayerPrefs.DeleteAll();
+            PlayerPrefs.SetFloat("MusicVolumen", musik);
+            PlayerPrefs.SetFloat("EffektVolumen", effekt);
             Optionenmenue.SetActive(!clicked);
             Hauptmenue.SetActive(clicked);
             Impressummenue.SetActive(!clicked);

@@ -15,5 +15,6 @@ F:/Programme/Unity/Editor/Data/UnityExtensions/Unity/TreeEditor/Editor/UnityEdit
 F:/Programme/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll
 F:/Programme/Unity/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
 F:/Programme/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.dll
+F:/Programme/Unity/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
 F:/Programme/Unity/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll
 C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/2015/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll

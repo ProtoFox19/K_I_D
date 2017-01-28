@@ -11,7 +11,8 @@ public class LoadTargetSceneButton : MonoBehaviour {
     {
 
         if (sceneToLoad == -1){
-
+            Screenshotgesperrt.SetActive(false);
+            Screenshotfrei.SetActive(true);
         }
         else { 
             if (PlayerPrefs.GetInt(sceneToLoad.ToString()) == 1) {

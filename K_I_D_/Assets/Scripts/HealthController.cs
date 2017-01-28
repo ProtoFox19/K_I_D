@@ -46,6 +46,8 @@ public class HealthController : MonoBehaviour {
 
 		health = startHealth;
 
+        
+
 	}
 	
 	// Update is called once per frame
@@ -148,7 +150,8 @@ public class HealthController : MonoBehaviour {
 	// Erhoeht Health des Spielers
 	public void AddHealth (float extraHealth) {
 
-		GetComponent<AudioSource> ().Play ();
+        AudioSource.PlayClipAtPoint(clip, transform.position, PlayerPrefs.GetFloat("EffektVolumen"));
+        //GetComponent<AudioSource> ().Play ();
 
         float tempHealth = health + extraHealth;
         if (tempHealth > maxHealth)
