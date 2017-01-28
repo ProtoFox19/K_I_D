@@ -420,10 +420,11 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Kody in Dreams\n\r\nDesignprojekt I\n2016/2017\r\n\r\nEntwickler:\r\nSabrina
-    Fimm\r, Max Roth\r, Christoph Suhr\r\n\r\nZeichnungen und Programmcode unterliegen
-    dem Creative Commons:\r\nNamensnennung, \r\nNicht kommerziell,\r\nKeine Bearbeitungen\r\nund
-    sind geistiges Eigentum von Sabrina Fimm, Max Roth und \nChristoph Suhr\r\n"
+  m_Text: "Kody in Dreams\n\r\n\rInformationstechnologie und Design\nDesignprojekt
+    I\n2016/2017\r\n\r\nEntwickler:\r\nSabrina Fimm\r, Max Roth\r, Christoph Suhr\r\n\r\nZeichnungen
+    und Programmcode unterliegen dem Creative Commons:\r\nNamensnennung, \r\nNicht
+    kommerziell,\r\nKeine Bearbeitungen\r\nund sind geistiges Eigentum von Sabrina
+    Fimm, Max Roth und \nChristoph Suhr\r\n"
 --- !u!222 &107023924
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -8,9 +8,9 @@ public class StartSound : StateMachineBehaviour {
 	 // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
 	override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
 
-		AudioSource.PlayClipAtPoint (clip, animator.transform.position, 1);
+		AudioSource.PlayClipAtPoint (clip, animator.transform.position, PlayerPrefs.GetFloat("EffektVolumen"));
 
-	}
+    }
 
 	// OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
 	//override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
