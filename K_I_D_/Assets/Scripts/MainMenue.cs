@@ -8,6 +8,20 @@ public class MainMenue : MonoBehaviour {
     //Die Panels die jeweils sichtbar und unsichtbar gemacht werden sollen
     public GameObject Hauptmenue, Levelmenue, Optionenmenue, Impressummenue, Level1, Level2, Level3;
 
+	void Start() {
+
+		if(PlayerPrefs.GetFloat("MusicVolumen") == 0)
+			
+		{
+			PlayerPrefs.SetFloat("MusicVolumen", 1f);
+		}
+
+		if(PlayerPrefs.GetFloat("EffektVolumen") == 0)
+
+		{
+			PlayerPrefs.SetFloat("EffektVolumen", 1f);
+		}
+	}
 
     //Wenn auf Level geklickt wurde
     public void OnLevel(bool clicked)
